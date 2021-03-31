@@ -14,7 +14,7 @@ import javax.persistence.*;
 //@EqualsAndHashCode
 @Entity
 @Table(name = "users_account")
-public class UserAccount {
+public class UserAccount extends AuditModel{
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE,

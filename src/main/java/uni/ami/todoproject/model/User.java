@@ -11,7 +11,7 @@ import java.util.List;
 //@EqualsAndHashCode
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends AuditModel {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,
@@ -29,8 +29,17 @@ public class User {
     @Column(columnDefinition = "text", unique = true)
     private String email;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private UserAccount userAccount;
+    @Column(columnDefinition = "text")
+    private String name;
+
+    @Column(columnDefinition = "text")
+    private String surname;
+
+    @Column(columnDefinition = "text")
+    private String patronymic;
+
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+//    private UserAccount userAccount;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Task> tasks;
@@ -55,9 +64,21 @@ public class User {
         return tasks;
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
+    public String getName() {
+        return name;
     }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    //    public UserAccount getUserAccount() {
+//        return userAccount;
+//    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -75,9 +96,22 @@ public class User {
         this.tasks = tasks;
     }
 
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    //    public void setUserAccount(UserAccount userAccount) {
+//        this.userAccount = userAccount;
+//    }
+
 
     @Override
     public String toString() {
@@ -86,7 +120,10 @@ public class User {
                 ", login='" + login + '\'' +
                 ", password=" + password +
                 ", email='" + email + '\'' +
-                ", userAccount=" + userAccount +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", name='" + name + '\'' +
                 ", tasks=" + tasks +
                 '}';
     }
