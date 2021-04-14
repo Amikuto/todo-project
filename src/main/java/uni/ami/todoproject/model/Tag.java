@@ -2,12 +2,15 @@ package uni.ami.todoproject.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
+@Data
 @Entity
 @Table(name = "tags")
 public class Tag extends AuditModel {
@@ -34,12 +37,13 @@ public class Tag extends AuditModel {
 //    @JsonIgnore
 //    private Task task;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-////    @MapsId
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-////    @JoinColumn(name = "id")
-//    @JsonIgnore
-//    private User user;
+    @ManyToMany(mappedBy = "tags")
+    Set<Task> tasks;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private User user;
 
 //    public Long getId() {
 //        return id;

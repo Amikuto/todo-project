@@ -1,17 +1,14 @@
 package uni.ami.todoproject.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
 
-//@Getter
-//@Setter
-//@RequiredArgsConstructor
-//@ToString
-//@EqualsAndHashCode
+@Data
 @Entity
 @Table(name = "users_account")
 public class UserAccount extends AuditModel{
@@ -42,59 +39,59 @@ public class UserAccount extends AuditModel{
     @JsonIgnore
     private User user;
 
-    public Long getId() {
-        return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Long getAvatar() {
-        return avatar;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public String getSelfDescription() {
-        return selfDescription;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public void setAvatar(Long avatar) {
-        this.avatar = avatar;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setSelfDescription(String selfDescription) {
-        this.selfDescription = selfDescription;
-    }
-
-    @Override
-    public String toString() {
-        return "UserAccount{" +
-                "id=" + id +
-                ", fullName='" + fullName + '\'' +
-                ", avatar=" + avatar +
-                ", birthDate='" + birthDate + '\'' +
-                ", selfDescription='" + selfDescription + '\'' +
-                ", user=" + user +
-                '}';
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public Long getAvatar() {
+//        return avatar;
+//    }
+//
+//    public String getBirthDate() {
+//        return birthDate;
+//    }
+//
+//    public String getFullName() {
+//        return fullName;
+//    }
+//
+//    public String getSelfDescription() {
+//        return selfDescription;
+//    }
+//
+//    public void setFullName(String fullName) {
+//        this.fullName = fullName;
+//    }
+//
+//    public void setBirthDate(String birthDate) {
+//        this.birthDate = birthDate;
+//    }
+//
+//    public void setAvatar(Long avatar) {
+//        this.avatar = avatar;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+//
+//    public void setSelfDescription(String selfDescription) {
+//        this.selfDescription = selfDescription;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "UserAccount{" +
+//                "id=" + id +
+//                ", fullName='" + fullName + '\'' +
+//                ", avatar=" + avatar +
+//                ", birthDate='" + birthDate + '\'' +
+//                ", selfDescription='" + selfDescription + '\'' +
+//                ", user=" + user +
+//                '}';
+//    }
 }

@@ -1,7 +1,10 @@
 package uni.ami.todoproject.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "sessions")
 public class Session {
@@ -13,7 +16,7 @@ public class Session {
                        sequenceName="SEQ_SESSION", allocationSize=20)
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
 }

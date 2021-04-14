@@ -1,6 +1,7 @@
 package uni.ami.todoproject.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -8,10 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-//@Getter @Setter
-//@RequiredArgsConstructor
-//@ToString
-//@EqualsAndHashCode
+@Data
 @Entity
 @Table(name = "tasks")
 public class Task extends AuditModel {
@@ -41,6 +39,9 @@ public class Task extends AuditModel {
     @Column(columnDefinition = "boolean")
     private Boolean status;
 
+//    @Column(columnDefinition = "int")
+//    private Tag tag;
+
     @ManyToMany
     @JoinTable(
             name = "task_category",
@@ -49,10 +50,16 @@ public class Task extends AuditModel {
     )
     Set<Category> taskCategory;
 
+    @ManyToMany
+    @JoinTable(
+            name = "task_tag",
+            joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "task_id")
+    )
+    Set<Tag> tags;
+
     @ManyToOne(fetch = FetchType.LAZY)
-//    @MapsId
     @OnDelete(action = OnDeleteAction.CASCADE)
-//    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
@@ -64,50 +71,50 @@ public class Task extends AuditModel {
 //    @JsonIgnore
 //    private User user;
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-//    public List<Tag> getTag() {
-//        return tags;
+//    public Long getId() {
+//        return id;
 //    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-//    public void setTag(List<Tag> tags) {
-//        this.tags = tags;
+//
+//    public String getTitle() {
+//        return title;
 //    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-//                ", tag='" + tags + '\'' +
-                ", description='" + description + '\'' +
-                ", user=" + user +
-                '}';
-    }
+//
+////    public List<Tag> getTag() {
+////        return tags;
+////    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
+//
+////    public void setTag(List<Tag> tags) {
+////        this.tags = tags;
+////    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Task{" +
+//                "id=" + id +
+//                ", title='" + title + '\'' +
+////                ", tag='" + tags + '\'' +
+//                ", description='" + description + '\'' +
+//                ", user=" + user +
+//                '}';
+//    }
 }

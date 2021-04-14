@@ -1,8 +1,12 @@
 package uni.ami.todoproject.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
+
+@Data
 @Entity
 @Table(name = "category")
 public class Category extends AuditModel {
@@ -26,23 +30,23 @@ public class Category extends AuditModel {
     @ManyToMany(mappedBy = "taskCategory")
     Set<Task> tasks;
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Category{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                '}';
+//    }
 }

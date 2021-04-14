@@ -12,7 +12,7 @@ import uni.ami.todoproject.serviceImpl.UserServiceImpl;
 
 import javax.validation.Valid;
 
-@Controller
+@RestController
 public class UserController {
 
     @Autowired
