@@ -30,13 +30,6 @@ public class Tag extends AuditModel {
     @Column(columnDefinition = "int")
     private Integer color;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-////    @MapsId
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-////    @JoinColumn(name = "tags")
-//    @JsonIgnore
-//    private Task task;
-
     @ManyToMany(mappedBy = "tags")
     Set<Task> tasks;
 
@@ -44,51 +37,4 @@ public class Tag extends AuditModel {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;
-
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public Integer getColor() {
-//        return color;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public Task getTask() {
-//        return task;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-//
-//    public void setColor(Integer color) {
-//        this.color = color;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public void setTask(Task task) {
-//        this.task = task;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Tag{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", color=" + color +
-//                ", task=" + task +
-//                ", user=" + user +
-//                '}';
-//    }
 }
