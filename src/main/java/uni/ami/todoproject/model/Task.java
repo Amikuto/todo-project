@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,7 +15,20 @@ import java.util.Set;
 @Table(name = "tasks")
 public class Task extends AuditModel {
 
-//    public Task(){}
+    public Task(Long id, String title, String description, LocalDate completionDate, Boolean status, Set<Category> taskCategory, Set<Tag> tags, User user) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.completionDate = completionDate;
+        this.status = status;
+        this.taskCategory = taskCategory;
+        this.tags = tags;
+        this.user = user;
+    }
+
+    public Task() {
+
+    }
 
     @Id
     @GeneratedValue(
@@ -34,7 +48,7 @@ public class Task extends AuditModel {
     private String description;
 
     @Column(columnDefinition = "date")
-    private Date completionDate;
+    private LocalDate completionDate;
 
     @Column(columnDefinition = "boolean")
     private Boolean status;
@@ -63,7 +77,7 @@ public class Task extends AuditModel {
     @JsonIgnore
     private User user;
 
-//    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    //    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 //    private List<Tag> tags;
 
 //    @ManyToOne(fetch = FetchType.LAZY)

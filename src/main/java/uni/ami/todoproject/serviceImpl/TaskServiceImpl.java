@@ -74,4 +74,8 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getAllByUserId(Long userId) {
         return null;
     }
+
+    public Task getByUserId(Long userId) {
+        return taskRepository.findByUser_idEquals(userId);
+    }
 }

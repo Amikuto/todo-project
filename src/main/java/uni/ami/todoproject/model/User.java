@@ -11,6 +11,21 @@ import java.util.List;
 @Table(name = "users")
 public class User extends AuditModel {
 
+    public User() {
+    }
+
+    public User(Long id, String login, Integer password, String email, String name, String surname, String patronymic, List<Task> tasks, List<Tag> tags) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.tasks = tasks;
+        this.tags = tags;
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,
             generator="user_seq")
