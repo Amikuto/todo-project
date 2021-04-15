@@ -15,8 +15,4 @@ public class Session {
     @SequenceGenerator(name="session_seq",
                        sequenceName="SEQ_SESSION", allocationSize=20)
     private Long id;
-
-//    public Long getId() {
-//        return id;
-//    }
 }

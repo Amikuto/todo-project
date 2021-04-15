@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -29,7 +30,7 @@ public class Task extends AuditModel {
     public Task() {
 
     }
-
+	
     @Id
     @GeneratedValue(
             strategy= GenerationType.SEQUENCE,
@@ -53,22 +54,19 @@ public class Task extends AuditModel {
     @Column(columnDefinition = "boolean")
     private Boolean status;
 
-//    @Column(columnDefinition = "int")
-//    private Tag tag;
-
     @ManyToMany
     @JoinTable(
             name = "task_category",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id")
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    Set<Category> taskCategory;
+    Set<Category> categories;
 
     @ManyToMany
     @JoinTable(
             name = "task_tag",
-            joinColumns = @JoinColumn(name = "tag_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id")
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     Set<Tag> tags;
 

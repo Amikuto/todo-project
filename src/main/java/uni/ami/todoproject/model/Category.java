@@ -27,26 +27,6 @@ public class Category extends AuditModel {
     @Column(columnDefinition = "text")
     private String name;
 
-    @ManyToMany(mappedBy = "taskCategory")
+    @ManyToMany(mappedBy = "categories")
     Set<Task> tasks;
-
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Category{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                '}';
-//    }
 }
