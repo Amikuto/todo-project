@@ -14,7 +14,7 @@ public class User extends AuditModel {
     public User() {
     }
 
-    public User(Long id, String login, Integer password, String email, String name, String surname, String patronymic, List<Task> tasks, List<Tag> tags) {
+    public User(Long id, String login, Integer password, String email, String name, String surname, String patronymic, Set<Task> tasks, Set<Tag> tags) {
         this.id = id;
         this.login = login;
         this.password = password;

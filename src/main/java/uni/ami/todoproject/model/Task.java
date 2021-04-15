@@ -16,13 +16,13 @@ import java.util.Set;
 @Table(name = "tasks")
 public class Task extends AuditModel {
 
-    public Task(Long id, String title, String description, LocalDate completionDate, Boolean status, Set<Category> taskCategory, Set<Tag> tags, User user) {
+    public Task(Long id, String title, String description, LocalDate completionDate, Boolean status, Set<Category> categories, Set<Tag> tags, User user) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.completionDate = completionDate;
         this.status = status;
-        this.taskCategory = taskCategory;
+        this.categories = categories;
         this.tags = tags;
         this.user = user;
     }

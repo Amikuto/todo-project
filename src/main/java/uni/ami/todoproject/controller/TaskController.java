@@ -1,22 +1,39 @@
 package uni.ami.todoproject.controller;
 
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import uni.ami.todoproject.repository.TaskRepository;
+import org.springframework.web.bind.annotation.*;
+import uni.ami.todoproject.model.Task;
+import uni.ami.todoproject.serviceImpl.TaskServiceImpl;
+
+import javax.validation.Valid;
 
 @RestController
 public class TaskController {
 
     @Autowired
-    TaskRepository taskRepository;
+    TaskServiceImpl taskService;
 
-    @GetMapping("/task")
-    public ResponseEntity<?> getTask(){
-        System.out.println(taskRepository.findByUser_idEquals(1L).getTitle());
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/tasks")
+    public Page<Task> getAllTasks(Pageable pageable) {
+        return taskService.getAll(pageable);
+    }
+
+    @PostMapping("/tasks")
+    public Task createTask (@Valid @RequestBody Task task) {
+        return taskService.save(task);
+    }
+
+    @PutMapping("/tasks/{taskId}")
+    public Task updateTask(@Valid @PathVariable Long taskId,
+                           @Valid @RequestBody Task task) {
+        return taskService.update(taskId, task);
+    }
+
+    @DeleteMapping("/tasks/{taskId}")
+    public ResponseEntity<?> removeTask(@Valid @PathVariable Long taskId) {
+        return taskService.delete(taskId);
     }
 }

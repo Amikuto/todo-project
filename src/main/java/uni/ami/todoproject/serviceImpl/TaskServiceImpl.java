@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import uni.ami.todoproject.exceptions.ResourceNotFoundException;
 import uni.ami.todoproject.model.Task;
 import uni.ami.todoproject.repository.TaskRepository;
@@ -14,7 +15,7 @@ import uni.ami.todoproject.service.TaskService;
 import java.util.Date;
 import java.util.List;
 
-@Repository
+@Service
 public class TaskServiceImpl implements TaskService {
 
     @Autowired
@@ -37,12 +38,20 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task update(Long id, Task task) {
-        return null;
+        return taskRepository.findById(id)
+                .map(task_temp -> {
+                    task_temp.setStatus(task.getStatus());
+                    task_temp.setTitle(task.getTitle());
+                    task_temp.setDescription(task.getDescription());
+                    task_temp.setCompletionDate(task.getCompletionDate());
+
+                    return taskRepository.save(task_temp);
+                }).orElseThrow(new ResourceNotFoundException("Задания с заданным id не найдено"));
     }
 
     @Override
     public Task getById(Long id) {
-        return taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Задания с таким ID не было найдено!"));
+        return taskRepository.findById(id).orElseThrow(new ResourceNotFoundException("Задания с таким ID не найдено!"));
     }
 
     @Override

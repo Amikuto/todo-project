@@ -50,15 +50,13 @@ public class UserServiceImpl implements UserService {
                     user_temp.setPatronymic(user.getPatronymic());
                     user_temp.setSurname(user.getSurname());
 
-//                    user_temp.setTasks(user.getTasks());
-
                     return userRepository.save(user);
                 }).orElseThrow(() -> new ResourceNotFoundException("Пользователь с указанным ID не найден!"));
     }
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пользователь с указанным ID не найден!"));
+        return userRepository.findById(id).orElseThrow(new ResourceNotFoundException("Пользователь с указанным ID не найден!"));
     }
 
     @Override
