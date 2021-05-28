@@ -42,7 +42,7 @@ public class UserAccoountServiceImpl implements UserAccountService {
                     userAccount_temp.setAvatar(userAccount.getAvatar());
 
                     return userAccountRepository.save(userAccount_temp);
-                }).orElseThrow();
+                }).orElseThrow(new ResourceNotFoundException("Аккаунта с таки ID не существует"));
     }
 
     @Override

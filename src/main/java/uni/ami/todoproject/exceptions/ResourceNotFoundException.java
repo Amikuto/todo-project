@@ -8,8 +8,6 @@ import java.util.function.Supplier;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class ResourceNotFoundException extends RuntimeException implements Supplier<RuntimeException>{
 
-//    private final String message;
-
     public ResourceNotFoundException(String message) {
         super(message);
     }
@@ -17,8 +15,6 @@ public class ResourceNotFoundException extends RuntimeException implements Suppl
     public ResourceNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
-
-//    public ResourceNotFoundException(String message)
 
     @Override
     public RuntimeException get() {

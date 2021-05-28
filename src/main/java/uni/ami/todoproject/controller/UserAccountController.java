@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-import uni.ami.todoproject.model.User;
 import uni.ami.todoproject.model.UserAccount;
 import uni.ami.todoproject.serviceImpl.UserAccoountServiceImpl;
 
-import javax.validation.ReportAsSingleViolation;
 import javax.validation.Valid;
 
 @RestController

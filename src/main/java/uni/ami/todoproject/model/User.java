@@ -1,8 +1,10 @@
 package uni.ami.todoproject.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -14,7 +16,7 @@ public class User extends AuditModel {
     public User() {
     }
 
-    public User(Long id, String login, Integer password, String email, String name, String surname, String patronymic, Set<Task> tasks, Set<Tag> tags) {
+    public User(Long id, String login, Integer password, String email, String name, String surname, String patronymic, List<Task> tasks, List<Tag> tags) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -52,8 +54,10 @@ public class User extends AuditModel {
     private String patronymic;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Task> tasks;
+    @JsonManagedReference
+    private List<Task> tasks;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Tag> tags;
+    @JsonManagedReference
+    private List<Tag> tags;
 }

@@ -4,10 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import uni.ami.todoproject.model.User;
-import uni.ami.todoproject.repository.UserRepository;
 import uni.ami.todoproject.serviceImpl.UserServiceImpl;
 
 import javax.validation.Valid;

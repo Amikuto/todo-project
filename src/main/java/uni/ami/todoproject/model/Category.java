@@ -1,11 +1,17 @@
 package uni.ami.todoproject.model;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.FetchMode;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Table(name = "category")
@@ -28,5 +34,6 @@ public class Category extends AuditModel {
     private String name;
 
     @ManyToMany(mappedBy = "categories")
-    Set<Task> tasks;
+    @JsonBackReference
+    private List<Task> tasks;
 }

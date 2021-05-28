@@ -1,15 +1,18 @@
 package uni.ami.todoproject.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Table(name = "tags")
@@ -31,7 +34,8 @@ public class Tag extends AuditModel {
     private Integer color;
 
     @ManyToMany(mappedBy = "tags")
-    Set<Task> tasks;
+    @JsonBackReference
+    private List<Task> tasks;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
